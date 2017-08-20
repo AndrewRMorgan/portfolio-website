@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <link rel='stylesheet' type='text/css' href='styles/main.css'>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Coiny|Baloo" rel="stylesheet">
+</head>
+<body>
+
+  <header id='mainHeader' class='mainHeader'>Tic-Tac-Toe</header>
+
+  <div id='optionScr' class='optionScr'>
+    <div id='choose' class='choose'>
+      <div id='humanOrComputer'>
+        <p>One Player or Two Player Game?</p>
+        <div id='chooseComputer' class='firstOptions'>One Player</div>
+        <div id='choosePlayers' class='firstOptions'>Two Player</div>
+      </div>
+      <div id='xOrO'>
+        <p>Would you like to play as X or O?</p>
+        <div id='chooseX' class='options'>X</div>
+        <div id='chooseO' class='options'>O</div>
+      </div>
+    </div>
+  </div>
+<div id='greyScr' class='greyScr'></div>
+<div id='main' class='main'>
+  <div id='container'>
+    <div id='topL' class='square' value='topL'></div>
+    <div id='topC' class='square' value='topC'></div>
+    <div id='topR' class='square' value='topR'></div>
+    <div id='midL' class='square' value='midL'></div>
+    <div id='midC' class='square' value='midC'></div>
+    <div id='midR' class='square' value='midR'></div>
+    <div id='botL' class='square' value='botL'></div>
+    <div id='botC' class='square' value='botC'></div>
+    <div id='botR' class='square' value='botR'></div>
+    <div id='reset' class='reset'></div>
+    <div id='resetAlert' class='resetAlert'></div>
+  </div>
+  <div id='turnDiv' class='turnDiv'>Your turn, Player <span id='turnSpan'></span>!</div>
+  <div id='buttonGroup' class='buttonGroup'>
+    <button id='resetButton' class='resetButton'>Reset</button>
+    <button id='newGameButton' class='newGameButton'>New Game</button>
+  </div>
+</div>
+<div class="about">Created by <a href="andymorgan.net" target="Andy Morgan">AndrewRMorgan</a></div>
+<script src='scripts/jquery-3.1.0.slim.min.js'></script>
+<script type='text/javascript' src='scripts/main.js'></script>
+
+</body>
+</html>
