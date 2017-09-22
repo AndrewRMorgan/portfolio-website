@@ -1,0 +1,87 @@
+body {
+  width: auto;
+  height: auto;
+  background: #1a1a1a;
+  background-image: url('../images/paper.png');
+  background-repeat: repeat;
+}
+.container {
+  display: block;
+  width: 700px;
+  min-height: 100px;
+  margin: 200px auto 0 auto;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+.quote {
+  display: block;
+  width: 620px;
+  min-height: 40px;
+  padding: 10px 40px 0 40px;
+  color: black;
+  text-align: center;
+  font-family: 'Droid Serif', serif;
+}
+.author {
+  min-height: 40px;
+  padding: 0 40px;
+  text-align: right;
+  font-family: 'Droid Serif', serif;
+}
+.twitter-button {
+  display: inline-block;
+  float: left;
+  margin-left: 40px;
+  width: 40px;
+  height: 40px;
+  background: #8c8c8c;
+  background-image: url('../images/twitter.png');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+.twitter-button:hover {
+  background: #666666;
+  background-image: url('../images/twitter.png');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+.getQuote {
+  float: right;
+  margin-right: 40px;
+  width: 160px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-family: 'Droid Serif', serif;
+  font-size: 0.9em;
+  padding: 0 10px;
+  border-radius: 5px;
+  background: #8c8c8c;
+  color: white;
+}
+.getQuote:hover {
+  background: #666666;
+  cursor: pointer;
+}
+.about {
+  display: block;
+  margin: 0 auto;
+  width: 700px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-family: 'Droid Serif', serif;
+  font-size: 0.8em;
+  color: #8c8c8c;
+}
+a, a:hover, a:visited, a:active {
+  text-decoration: none;
+  color: inherit;
+}
