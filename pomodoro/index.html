@@ -3,54 +3,33 @@
 <head>
   <title>Pomodoro Clock - By Andy Morgan</title>
   <link rel='stylesheet' type='text/css' href='styles/basic.css'>
-  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans" rel="stylesheet">
 </head>
 
 <body>
-<div class='mainContainer'>
-  <header class='mainHeader'>Deep Work Timer</header>
-    <div class='topBox'>
-      <div class='leftGroup'>
-        <div class='group'>
-          <div id='workTimer' class='time'></div>
-            <div class='changeGroup'>
-              <button id='increase' class='change'>+</button>
-              <button id='decrease' class='change'>-</button>
-            </div>
-        </div>
-        <div class='group'>
-          <div id='breakTimer' class='time'></div>
-            <div class='changeGroup'>
-              <button id='increaseBreak' class='change'>+</button>
-              <button id='decreaseBreak' class='change'>-</button><br>
-          </div>
-        </div>
-        <div class='controlGroup'>
-          <button id='start' class='control'>START</button>
-          <button id='stop' class='control'>STOP</button>
-        </div>
+<header class='mainHeader'>Pomodoro Clock</header>
+<div class='container'>
+<div class='rightGroup'>
+  <div class='group'>
+    <div id='workTimer' class='time'></div>
+      <div class='changeGroup'>
+        <button id='increase' class='change'>+</button>
+        <button id='decrease' class='change'>-</button>
       </div>
-      <div class='rightGroup'>
-        <div>Minutes:</div>
-        <div id='recordMinutes' class='recordMinutes'>0:00</div>
-        <!--
-        To Do:
-          - Create box for deep work record.
-          - Create function that adds minutes after each session to deep work record.
-          - Create link to Cal Newport's website.
-          - Create function to reset deep work record.
-          - Fix CSS to make everything look nice again.
-       -->
-      </div>
+  </div>
+  <div class='group'>
+    <div id='breakTimer' class='time'></div>
+      <div class='changeGroup'>
+        <button id='increaseBreak' class='change'>+</button>
+        <button id='decreaseBreak' class='change'>-</button><br>
     </div>
-  <div class='quote'><b>Deep Work:</b> Professional activities performed in a
-    state of distraction-free concentration that push your cognitive capacities
-    to their limit. - <a class='newport-link' href='http://calnewport.com' target='Cal Newport'><em>Cal Newport</em></a>
+  </div>
+  <div class='controlGroup'>
+    <button id='start' class='control'>START</button>
+    <button id='stop' class='control'>STOP</button>
   </div>
 </div>
-
-
-
+</div>
 <div class="about">Created by <a href="http://codepen.io/andrewrmorgan/" target="_blank">AndrewRMorgan</a></div>
 <audio id='timerSound'>
   <source src="sounds/sound.mp3"/>

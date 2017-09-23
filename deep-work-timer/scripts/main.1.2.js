@@ -3,20 +3,24 @@ let flag = 0
 let workSessionInterval
 let breakSessionInterval
 
+let record = {
+  minutes: 0
+}
+
 let workSession = {
   seconds : 60,
-  minutes : 25,
+  minutes : 50,
   displaySeconds : "",
   originalSeconds : 60,
-  originalMinutes : 25
+  originalMinutes : 50
 }
 
 let breakSession = {
   seconds : 60,
-  minutes : 5,
+  minutes : 10,
   displaySeconds : "",
   originalSeconds : 60,
-  originalMinutes : 5
+  originalMinutes : 10
 }
 
 document.getElementById("workTimer").innerHTML = workSession.minutes + ":00"
@@ -158,6 +162,7 @@ function endSession(session) {
   switch (true) {
     case (session === workSession):
       clearInterval(workSessionInterval)
+      addMinutesToRecord()
       break
     case (session === breakSession):
       clearInterval(breakSessionInterval)
@@ -195,4 +200,9 @@ function startNextSession(session) {
       startWorkSession()
       break
   }
+}
+
+function addMinutesToRecord() {
+  record.minutes = record.minutes + workSession.originalMinutes
+  document.getElementById('recordMinutes').innerHTML = record.minutes + ':00'
 }
