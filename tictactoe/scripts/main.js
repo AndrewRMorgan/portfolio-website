@@ -73,7 +73,6 @@ function checkForDraw(board) {
       tally++;
     }
   }
-
   return tally === 0;
 }
 
@@ -200,17 +199,19 @@ function startGame() {
   }
 }
 
-$('.square').click(function(){
-  pick($(this).attr("value"));
+$('.square').on('click', function(){
+  console.log($(this).attr('value'));
+  pick($(this).attr('value'));
 });
 
 function pick(position) {
-  if ($('#' + position).text() === '' && flag === 0) {
-    $('#' + position).text(player(playersTurn));
+  console.log(position);
+  if ($('#position' + position).text() === '' && flag === 0) {
+    $('#position' + position).text(player(playersTurn));
     if (playersTurn === 1) {
-      $('#' + position).css('color','rgba(255, 51, 51, 1.0)');
+      $('#position' + position).css('color','rgba(255, 51, 51, 1.0)');
     } else if (playersTurn === 2) {
-      $('#' + position).css('color','rgba(0, 153, 255, 1.0)');
+      $('#position' + position).css('color','rgba(0, 153, 255, 1.0)');
     }
     board[position] = playersTurn;
     flag = 1;
@@ -234,25 +235,30 @@ function changeTurn(num){
   }
   document.getElementById('turnSpan').innerHTML = playersTurn;
 }
+// 0 | 1 | 2
+// ---------
+// 3 | 4 | 5
+// ---------
+// 6 | 7 | 8
 
 //This function checks for a win in both types of games.
 function checkWin(num){
-  if (board.topL === num && board.topC === num && board.topR === num) {
-    wTimeout = setTimeout(win, 1000, "topL", "topC", "topR", num);
-  } else if (board.midL === num && board.midC === num && board.midR === num){
-    wTimeout = setTimeout(win, 1000, "midL", "midC", "midR", num);
-  } else if (board.botL === num && board.botC === num && board.botR === num){
-    wTimeout = setTimeout(win, 1000, "botL", "botC", "botR", num);
-  } else if (board.topL === num && board.midL === num && board.botL === num){
-    wTimeout = setTimeout(win, 1000, "topL", "midL", "botL", num);
-  } else if (board.topC === num && board.midC === num && board.botC === num){
-    wTimeout = setTimeout(win, 1000, "topC", "midC", "botC", num);
-  } else if (board.topR === num && board.midR === num && board.botR === num){
-    wTimeout = setTimeout(win, 1000, "topR", "midR", "botR", num);
-  } else if (board.topL === num && board.midC === num && board.botR === num){
-    wTimeout = setTimeout(win, 1000, "topL", "midC", "botR", num);
-  } else if (board.topR === num && board.midC === num && board.botL === num){
-    wTimeout = setTimeout(win, 1000, "topR", "midC", "botL", num);
+  if (board[0] === num && board[1] === num && board[2] === num) {
+    wTimeout = setTimeout(win, 1000, "position0", "position1", "position2", num);
+  } else if (board[3] === num && board[4] === num && board[5] === num){
+    wTimeout = setTimeout(win, 1000, "position3", "position4", "position5", num);
+  } else if (board[6] === num && board[7] === num && board[8] === num){
+    wTimeout = setTimeout(win, 1000, "position6", "position7", "position8", num);
+  } else if (board[0] === num && board[3] === num && board[6] === num){
+    wTimeout = setTimeout(win, 1000, "position0", "position3", "position6", num);
+  } else if (board[1] === num && board[4] === num && board[7] === num){
+    wTimeout = setTimeout(win, 1000, "position1", "position4", "position7", num);
+  } else if (board[2] === num && board[5] === num && board[8] === num){
+    wTimeout = setTimeout(win, 1000, "position2", "position5", "position8", num);
+  } else if (board[0] === num && board[4] === num && board[8] === num){
+    wTimeout = setTimeout(win, 1000, "position0", "position4", "position8", num);
+  } else if (board[2] === num && board[4] === num && board[6] === num){
+    wTimeout = setTimeout(win, 1000, "position2", "position4", "position6", num);
   } else if (checkDraw(board)) {
     draw();
   } else {
@@ -286,6 +292,7 @@ function nextMove() {
 //This function will take an input of a board and then it will push all the
 //possible moves/empty spaces to an array.
 function possibleMoves(board) {
+  console.log('possibleMoves');
   movesArr = [];
   for (var propName in board){
     if (board[propName] === 0){
@@ -298,9 +305,11 @@ function possibleMoves(board) {
 //This function plays the computer's move in the game. Note: The computer is
 //always player2.
 function playMove(position) {
-  if ($('#' + position).text() === ''){
-    $('#' + position).text(player(playersTurn));
-    $('#' + position).css('color', 'rgba(0, 153, 255, 1.0)');
+  console.log('playMove - position:', position);
+  if ($('#position' + position).text() === ''){
+    console.log(player(playersTurn));
+    $('#position' + position).text(player(playersTurn));
+    $('#position' + position).css('color', 'rgba(0, 153, 255, 1.0)');
     board[position] = 2;
     checkWin(playersTurn);
   }
@@ -310,9 +319,9 @@ function playMove(position) {
 //with moves and then outputs a board containing those positions.
 function constructBoard(board, position, value){
   var simulBoard = {
-    topL: 0, topC: 0, topR: 0,
-    midL: 0, midC: 0, midR: 0,
-    botL: 0, botC: 0, botR: 0
+    0: 0, 1: 0, 2: 0,
+    3: 0, 4: 0, 5: 0,
+    6: 0, 7: 0, 8: 0
   };
   for (var prop in simulBoard) {
     simulBoard[prop] = board[prop];
@@ -324,6 +333,7 @@ function constructBoard(board, position, value){
 //This function picks from an array of possible moves on order to see if there
 //are any winning moves for the computer to take.
 function winMove(possibleMoves){
+  console.log('winMove');
   for (i = 0; i < possibleMoves.length; i++){
     winningMove = possibleMoves[i];
     var newBoard = constructBoard(board, winningMove, 2);
@@ -339,10 +349,12 @@ function winMove(possibleMoves){
 //This function picks from an array of possible moves in order to see if there
 //are any blocking moves for the computer to take.
 function blockMove(possibleMoves) {
+  console.log('blockMove');
   for (i = 0; i < possibleMoves.length; i++){
     blockingMove = possibleMoves[i];
     var newBoard = constructBoard(board, blockingMove, 1);
     if (simCheckWin(newBoard, 1)) {
+      console.log('Blocking Move')
       computerMove = blockingMove;
       playMove(computerMove);
       return;
@@ -354,26 +366,27 @@ function blockMove(possibleMoves) {
 //This function will play a random move for the computer if there are no winning
 //or blocking moves that the computer can take.
 function randomMove(possibleMoves) {
+  console.log('randomMove');
   return Math.floor(Math.random() * ((possibleMoves.length - 1) - 0 + 1)) + 0;
 }
 
 //This function checks for a win in the computer vs human game.
 function simCheckWin(board, num) {
-  if (board.topL === num && board.topC === num && board.topR === num) {
+  if (board[0] === num && board[1] === num && board[2] === num) {
     return true;
-  } else if (board.midL === num && board.midC === num && board.midR === num){
+  } else if (board[3] === num && board[4] === num && board[5] === num){
     return true;
-  } else if (board.botL === num && board.botC === num && board.botR === num){
+  } else if (board[6] === num && board[7] === num && board[8] === num){
     return true;
-  } else if (board.topL === num && board.midL === num && board.botL === num){
+  } else if (board[0] === num && board[3] === num && board[6] === num){
     return true;
-  } else if (board.topC === num && board.midC === num && board.botC === num){
+  } else if (board[1] === num && board[4] === num && board[7] === num){
     return true;
-  } else if (board.topR === num && board.midR === num && board.botR === num){
+  } else if (board[2] === num && board[5] === num && board[8] === num){
     return true;
-  } else if (board.topL === num && board.midC === num && board.botR === num){
+  } else if (board[0] === num && board[4] === num && board[8] === num){
     return true;
-  } else if (board.topR === num && board.midC === num && board.botL === num){
+  } else if (board[2] === num && board[4] === num && board[6] === num){
     return true;
   } else {
     return false;
@@ -419,6 +432,8 @@ function clearTimers() {
 document.getElementById('resetButton').addEventListener('click', function() {
   clearTimers();
   hideBoard();
+  document.getElementById('reset').style.display = 'none';
+  document.getElementById('resetAlert').style.display = 'none';
   start();
 })
 
